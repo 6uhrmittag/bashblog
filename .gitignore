@@ -1,6 +1,6 @@
 /copyfromserver.sh
 /copytoserver.sh
-/beitraege
+/beitraege/*
 /index.html
 /config/*.xml
 *test*.*
