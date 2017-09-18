@@ -1,6 +1,0 @@
-feed=$(curl --silent "https://zapier.com/engine/rss/2528358/blogeintrag/")
-echo $feed > mail.xml
-
-phasedfeed=$(xmlstarlet sel -t -v rss/channel/item mail.xml)
-
-echo $phasedfeed
