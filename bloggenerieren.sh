@@ -1,29 +1,36 @@
 #!/bin/bash
 #
 
-echo "" > eintraege.html
+#loadad config
+path_config="./config/config.conf"
+. $path_config
+
+
+touch $path_temp/eintraege.html
+echo "" > $path_temp/eintraege.html
 
 
 #Füge index.html aus allen Einträgen zusammen
-for FILE in $(ls beitraege| sort -t_ -n -k4 -r -k3 ); do
-  cat "./templates/tag_anfang" >> "eintraege.html"
+for FILE in $(ls $path_entries| sort -t_ -n -k4 -r -k3 ); do
+  cat "$path_templates/tag_anfang.html" >> "$path_temp/eintraege.html"
   #Datum aus Filename extraieren  
-   datum=$(echo "./beitraege/$FILE" | cut -d. -f2 | cut -d_ -f2,3,4 | tr _ .)
-#  datum=$(echo "./beitraege/$FILE" | cut -d_ -f2-4 | sort -n | cut -d_ -f3 | sort -n | cut -d_ -f4 | sort -n -r
+  datum=$(echo $path_entries/$FILE | cut -d. -f1 | cut -d_ -f2,3,4 | tr _ .)
+#   datum=$(echo "$path_entries/$FILE" | cut -d. -f2 | cut -d_ -f2,3,4 | tr _ .)
+#  datum=$(echo "$path_entries/$FILE" | cut -d_ -f2-4 | sort -n | cut -d_ -f3 | sort -n | cut -d_ -f4 | sort -n -r
  
- echo "    $datum" >> "eintraege.html"
-  cat "./templates/tag_mitte" >> "eintraege.html"
-  cat "./beitraege/$FILE" >> "eintraege.html"
-  cat "./templates/tag_ende" >> "eintraege.html"
+  echo "    $datum" >> "$path_temp/eintraege.html"
+  cat "$path_templates/tag_mitte.html" >> "$path_temp/eintraege.html"
+  cat "$path_entries/$FILE" >> "$path_temp/eintraege.html"
+  cat "$path_templates/tag_ende.html" >> "$path_temp/eintraege.html"
 done
 
 
 
 
 #aktualisierte index.html zusammenbauen
-cat ./templates/index_anfang.html eintraege.html ./templates/index_ende.html > index.html
+cat $path_templates/index_anfang.html $path_temp/eintraege.html $path_templates/index_ende.html > index.html
 
-rm eintraege.html
+rm $path_temp/eintraege.html
 
 
 
