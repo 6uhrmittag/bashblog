@@ -5,3 +5,4 @@
 /config/*.xml
 *test*.*
 /*.xml
+/config/config.conf
