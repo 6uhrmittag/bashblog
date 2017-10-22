@@ -1,93 +1,45 @@
 # bashblog
 
 Blog system based on shell scripting. Input via shell or email.
-mainly for privat and learning purposes. 
-
-(Current readme ends here ;D )
-
-
+mainly for privat and learning purposes.
 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will guide you though installing your own blog. It is at a vry young age, so please expect undocumented parts.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+Software needed
+- xmlstarlet
+```sudo apt-get install xmlstarlet```
+- sed
+```usually installed```
+- xml_grep ```included in xml-coreutils```
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+There is no routine to install the blog, yet. Copy the branch ```master``` to your webserver. It doesn't need to be in the webserver's folder. ```~/bin/```could be a possible path. You need to be able to execute the scripts - ```chmod``` them to your needs.
+Copy ```config/config_template.conf``` to ```config/config.conf``` and change the two first lines to your need. ```install_path``` is the current path. ```html_path``` is the root directory for the final website. It must be accessible via web. You probably have do ```mkdir``` the needed folders yourself. Maybe even ```touch``` some files to create them initially. 
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+There are no automated tests. Run ```blogeintrag.sh``` (for manually importing a new entry) or ```mail.sh``` (for importing via RSS) after changing the code. Both scripts run ```beitraggenerieren.sh``` and ```bloggenerieren.sh``` after importing new entries.
+When testing ```mail.sh``` make sure you delete email IDs in ```ids.txt``` to use the same test-mails again.
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+The test succeeded when
+1. the entry is imported in ```/html/entries/```,  
+2. the entry is in ``ìndex.html```
+3. all parts of the entry are as they should be (url clickable, text and tag are presend)
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+I have not yet thought about others contributing to the project. We'll figure it out as soon as someone is interested in contributing.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+I use gitlab for versioning. See the code at [https://gitlab.com/6uhrmittag/bashblog](https://gitlab.com/6uhrmittag/bashblog).
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* **Marvin Heimbrodt** - *Initial work* - [6uhrmittag](6uhrmittag.de)
