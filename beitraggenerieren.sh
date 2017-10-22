@@ -3,6 +3,15 @@
 path_config="./config/config.conf"
 . $path_config
 
+source ./modules/translator_youtube.sh
+
+
+if [[ $(echo $url | grep youtube.com) != "" ]]; then
+  echo "youtube link found"
+translator_youtube $url
+EINTRAG_IN_HTML=$entry_after_translation
+else
+echo "no Youtube link found"
 
 #Eintrag als Variable gespeichert
 
@@ -38,6 +47,8 @@ EndOfMessage
   #In HTML wandeln ENDE
 
 
+fi
+
 
   #Aktuelles Datum
   DATE=`date +%d_%m_%Y`
@@ -47,4 +58,3 @@ EndOfMessage
 
   #Tägliche Einträge in eintraege.html sammeln bzw. an den Anfang schreiben
   echo "$EINTRAG_IN_HTML" | cat - "$path_entries/tag_$DATE.html" > $path_temp/temp && mv $path_temp/temp "$path_entries/tag_$DATE.html"
-
