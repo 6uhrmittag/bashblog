@@ -24,10 +24,14 @@ These instructions will guide you though installing your own blog. It is at a vr
 
 Software needed
 - xmlstarlet
-```sudo apt-get install xmlstarlet```
+
+`sudo apt-get install xmlstarlet`
 - sed
-```usually installed```
-- xml_grep ```included in xml-coreutils```
+
+`usually installed`
+- xml_grep, (included in xml-coreutils)
+
+Please see: [http://xml-coreutils.sourceforge.net/] instructions will follow.
 
 ### Installing
 
@@ -46,10 +50,18 @@ The usag is simple
 - ```E-Mail body``` = Entry URL
 - Tags are not supported yet
 
-To import the RSS feed ```mail.sh``` must be triggered manually. Import is not automated yet. Zappier generates an ID per email. This ID is stored in ```config/ids.txt``` and checked in the import script. Entries are grouped by the date the script is triggered.
+Zappier generates an ID per email. This ID is stored in ```config/ids.txt``` and checked in the import script. Entries are grouped by the date the script is triggered.
 After import the script generates a new ```index.html``` itself.
 
+#### Autoimport via cronjob
+To autoimport entries via RSS just add mail.sh to your crontab.
+The script output is logged to /temp/cronlog.txt. Better log will come later.
 
+In Terminal: ```crontab -e```
+
+Add line: ```*  *  * * * cd "ADD-INSTALL-PATH-HERE" && ./mail.sh >> ./temp/cronlog.txt```
+
+This will run the import every minute. See e.g. [crontab.guru](https://crontab.guru) for different settings.
 
 ## Running tests
 
