@@ -29,7 +29,7 @@ echo '' >> $path_temp/menu.html
 
 #Generate menu
 #Generate sub-menu:pages
-echo "<li>seiten</lis>" >> "$path_temp/menu.html"
+echo "<li>seiten</li>" >> "$path_temp/menu.html"
 echo "    <ul>" >> "$path_temp/menu.html"
 
 for FILE in $(ls $path_pages); do
@@ -41,7 +41,7 @@ echo "    </ul>" >> "$path_temp/menu.html"
 echo "pages links added"
 
 #Generate sub-menu:links
-echo "<li>links</lis>" >> "$path_temp/menu.html"
+echo "<li>links</li>" >> "$path_temp/menu.html"
 echo "    <ul>" >> "$path_temp/menu.html"
 
 for FILE in $(ls $path_menu_links); do
@@ -53,7 +53,7 @@ echo "    </ul>" >> "$path_temp/menu.html"
 echo "social links added"
 
 #Generate sub-menu:tags
-echo "<li>tags</lis>" >> "$path_temp/menu.html"
+echo "<li>tags</li>" >> "$path_temp/menu.html"
 echo "    <ul>" >> "$path_temp/menu.html"
 
 for FILE in $(ls $path_tags); do
