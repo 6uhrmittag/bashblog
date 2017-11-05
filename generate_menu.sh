@@ -52,6 +52,20 @@ done
 echo "    </ul>" >> "$path_temp/menu.html"
 echo "social links added"
 
+#Generate sub-menu:tags
+echo "<li>tags</lis>" >> "$path_temp/menu.html"
+echo "    <ul>" >> "$path_temp/menu.html"
+
+for FILE in $(ls $path_tags); do
+
+url_text=$(echo $FILE | cut -d. -f1)
+url=$(cat "$path_tags/$FILE" )
+
+echo '        <li class="sub"><a href="'$url'" target="_self">'$url_text'</a></li>' >> $path_temp/menu.html
+done
+echo "    </ul>" >> "$path_temp/menu.html"
+echo "social links added"
+
 ##Insert basic html structure to the end
 echo '' >> $path_temp/menu.html
 echo '' >> $path_temp/menu.html
