@@ -1,37 +1,57 @@
 #!/bin/bash
-#
+#This Script generates a new index.html out of all seperate parts
 
-#loadad config
+#load config
 path_config="./config/config.conf"
 . $path_config
 
+#Generate Menu
+. ./generate_menu.sh
 
+#Generate Entries.html
+##Create File
 touch $path_temp/eintraege.html
 echo "" > $path_temp/eintraege.html
 
-
-#Füge index.html aus allen Einträgen zusammen
+#Insert seperate Entries into one .html
 for FILE in $(ls $path_entries| sort -t_ -n -k4 -r -k3 ); do
   cat "$path_templates/tag_anfang.html" >> "$path_temp/eintraege.html"
-  #Datum aus Filename extraieren  
+  #Datum aus Filename extraieren
   datum=$(echo $path_entries/$FILE | cut -d. -f1 | cut -d_ -f2,3,4 | tr _ .)
-#   datum=$(echo "$path_entries/$FILE" | cut -d. -f2 | cut -d_ -f2,3,4 | tr _ .)
-#  datum=$(echo "$path_entries/$FILE" | cut -d_ -f2-4 | sort -n | cut -d_ -f3 | sort -n | cut -d_ -f4 | sort -n -r
- 
+
   echo "    $datum" >> "$path_temp/eintraege.html"
   cat "$path_templates/tag_mitte.html" >> "$path_temp/eintraege.html"
   cat "$path_entries/$FILE" >> "$path_temp/eintraege.html"
   cat "$path_templates/tag_ende.html" >> "$path_temp/eintraege.html"
 done
+#end: Generate Entries.html
 
 
+#Generate new index.html
+##Create File
+touch $html_path/index.html
+echo "" > $html_path/index.html
 
+##Insert Parts into index.html
+echo '<!DOCTYPE html>' >> $html_path/index.html
 
-#aktualisierte index.html zusammenbauen
-cat $path_templates/index_anfang.html $path_temp/eintraege.html $path_templates/index_ende.html > $html_path/index.html
+cat $path_templates/meta.html  >> $html_path/index.html
+cat $path_templates/header.html  >> $html_path/index.html
+cat $path_temp/menu.html  >> $html_path/index.html
 
+echo '<div id="inhalt">' >> $html_path/index.html
+cat $path_temp/eintraege.html >> $html_path/index.html
+echo '</div>' >> $html_path/index.html
+
+echo '</body>' >> $html_path/index.html
+echo '</html>' >> $html_path/index.html
+#end: Generate new index.html
+
+##Delete Tempfiles
 rm $path_temp/eintraege.html
+rm $path_temp/menu.html
+#end: Delete Tempfiles
 
 
-
+###Todo: Check for errors
 echo "Neue index.html generiert!"
