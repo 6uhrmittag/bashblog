@@ -2,8 +2,9 @@
 #TODO: tags
 
 #Debugmessage
-now=$(date +"%T")
-echo "$now - Start Email import"
+debug_time=$(date +"%T")
+debug_date="$(date +'%d/%m/%Y')"
+echo "$debug_date - $debug_time - Start Email import"
 
 #load config
 path_config="./config/config.conf"
