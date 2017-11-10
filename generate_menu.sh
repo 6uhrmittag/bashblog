@@ -13,7 +13,8 @@ path_config="./config/config.conf"
 
 #relativ path to pages viewd from index.html
 path_relativ_pages="./html/pages/"
-
+#relativ path to tags viewd from index.html
+path_relativ_tags="./html/tags/"
 
 #Generate FILE
 touch $path_temp/menu.html
@@ -29,28 +30,58 @@ echo '' >> $path_temp/menu.html
 
 #Generate menu
 #Generate sub-menu:pages
-echo "<li>seiten</lis>" >> "$path_temp/menu.html"
-echo "    <ul>" >> "$path_temp/menu.html"
+if [[ $(ls $path_pages) ]]; then
+  echo "<li>seiten</li>" >> "$path_temp/menu.html"
+  echo "    <ul>" >> "$path_temp/menu.html"
 
-for FILE in $(ls $path_pages); do
-  url_text=$(echo $FILE | cut -d. -f1)
-  url="$path_relativ_pages$FILE"
-echo '        <li class="sub"><a href="'$url'" target="_self">'$url_text'</a></li>' >> $path_temp/menu.html
-done
-echo "    </ul>" >> "$path_temp/menu.html"
-echo "pages links added"
+  for FILE in $(ls $path_pages); do
+    url_text=$(echo $FILE | cut -d. -f1)
+    url="$path_relativ_pages$FILE"
+    echo "        <li class=\"sub\"><a href=\"$url\" target=\"_self\">$url_text</a></li>" >> $path_temp/menu.html
+  done
+
+  echo "    </ul>" >> "$path_temp/menu.html"
+  echo "pages links added"
+fi
+
+
 
 #Generate sub-menu:links
-echo "<li>links</lis>" >> "$path_temp/menu.html"
-echo "    <ul>" >> "$path_temp/menu.html"
+if [[ $(ls $path_menu_links) ]]; then
+  echo "<li>links</li>" >> "$path_temp/menu.html"
+  echo "    <ul>" >> "$path_temp/menu.html"
 
-for FILE in $(ls $path_menu_links); do
-  url_text=$(echo $FILE)
- url=$(cat "$path_menu_links/$FILE" )
-echo '        <li class="sub"><a href="'$url'" target="_self">'$url_text'</a></li>' >> $path_temp/menu.html
-done
-echo "    </ul>" >> "$path_temp/menu.html"
-echo "social links added"
+  for FILE in $(ls $path_menu_links); do
+    url_text=$(echo $FILE)
+    echo $(cat "$path_menu_links/$FILE")
+    url=$(cat "$path_menu_links/$FILE" )
+    echo $url
+    echo "        <li class=\"sub\"><a href=\"$url\" target=\"_new\">$url_text</a></li>" >> $path_temp/menu.html
+  done
+
+  echo "    </ul>" >> "$path_temp/menu.html"
+  echo "social links added"
+
+fi
+
+
+#Generate sub-menu:tags
+if [[ $(ls $path_tags) ]]; then
+  echo "<li>tags</li>" >> "$path_temp/menu.html"
+  echo "    <ul>" >> "$path_temp/menu.html"
+
+  for FILE in $(ls $path_tags); do
+    url_text=$(echo $FILE | cut -d. -f1)
+    url="$path_relativ_tags$FILE"
+    echo "        <li class=\"sub\"><a href=\"$url\" target=\"_self\">$url_text</a></li>" >> $path_temp/menu.html
+  done
+  echo "    </ul>" >> "$path_temp/menu.html"
+  echo "social links added"
+fi
+
+
+
+
 
 ##Insert basic html structure to the end
 echo '' >> $path_temp/menu.html
