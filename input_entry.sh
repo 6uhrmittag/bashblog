@@ -22,7 +22,7 @@ printf "URL: "
 read   url
 
 printf "Text: "
-read eintragstext
+read entry_text
 
 printf "Tags: "
 read tags
