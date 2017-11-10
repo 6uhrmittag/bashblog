@@ -7,9 +7,8 @@ source ./modules/translator_youtube.sh
 
 
 if [[ $(echo $url | grep youtube.com) != "" ]]; then
-  echo "youtube link found"
-translator_youtube $url
-entry_html=$entry_after_translation
+  translator_youtube $url
+  entry_html=$entry_after_translation
 else
 
   #Convert special characters.
