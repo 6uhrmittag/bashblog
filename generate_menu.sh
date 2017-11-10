@@ -53,9 +53,7 @@ if [[ $(ls $path_menu_links) ]]; then
 
   for FILE in $(ls $path_menu_links); do
     url_text=$(echo $FILE)
-    echo $(cat "$path_menu_links/$FILE")
     url=$(cat "$path_menu_links/$FILE" )
-    echo $url
     echo "        <li class=\"sub\"><a href=\"$url\" target=\"_new\">$url_text</a></li>" >> $path_temp/menu.html
   done
 
