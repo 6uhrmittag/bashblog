@@ -41,7 +41,7 @@ if [[ $(ls $path_pages) ]]; then
   done
 
   echo "    </ul>" >> "$path_temp/menu.html"
-  echo "pages links added"
+  #echo "Menu: pages links added"
 fi
 
 
@@ -53,14 +53,12 @@ if [[ $(ls $path_menu_links) ]]; then
 
   for FILE in $(ls $path_menu_links); do
     url_text=$(echo $FILE)
-    echo $(cat "$path_menu_links/$FILE")
     url=$(cat "$path_menu_links/$FILE" )
-    echo $url
     echo "        <li class=\"sub\"><a href=\"$url\" target=\"_new\">$url_text</a></li>" >> $path_temp/menu.html
   done
 
   echo "    </ul>" >> "$path_temp/menu.html"
-  echo "social links added"
+  #echo "Menu: social links added"
 
 fi
 
@@ -76,7 +74,7 @@ if [[ $(ls $path_tags) ]]; then
     echo "        <li class=\"sub\"><a href=\"$url\" target=\"_self\">$url_text</a></li>" >> $path_temp/menu.html
   done
   echo "    </ul>" >> "$path_temp/menu.html"
-  echo "social links added"
+  #echo "Menu: tag links added"
 fi
 
 
@@ -89,3 +87,5 @@ echo '' >> $path_temp/menu.html
 echo '</ul>' >> $path_temp/menu.html
 echo '</div>' >> $path_temp/menu.html
 echo '</nav>' >> $path_temp/menu.html
+
+echo "Generated: Menu"

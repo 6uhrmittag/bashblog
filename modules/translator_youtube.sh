@@ -26,10 +26,10 @@ youtube_id=$(echo $entry_before_translation  | sed -r 's/^.*[&?]v=(.{11})([&#].*
 #Generate html for entry
 #For CSS see: https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php
 entry_after_translation=$(cat<<EndOfMessage
-<!-- EINTRAG ANFANG -->
+<!-- Entry Start -->
 <div class="eintrag">
       <div class="videotitle">
-                  <span>$eintragstext</span>
+                  <span>$entry_text</span>
       </div>
 
       <div class="YoutubeVideoWrapper">
@@ -41,7 +41,7 @@ entry_after_translation=$(cat<<EndOfMessage
       </div>
   <br />
 </div>
-<!-- EINTRAG ENDE -->
+<!-- Entry End -->
 EndOfMessage
 )
 
@@ -51,6 +51,5 @@ EndOfMessage
   entry_after_translation="$entry_before_translation"
 fi
 
-  echo $entry_after_translation
   return 0
 }

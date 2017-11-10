@@ -22,16 +22,16 @@ printf "URL: "
 read   url
 
 printf "Text: "
-read eintragstext
+read entry_text
 
 printf "Tags: "
 read tags
 
-printf "Du hast folgendes eingegeben: \n$url\n$eintragstext\n$tags\n"
+printf "You entered: \n$url\n$entry_text\n$tags\n"
 
 
 #Abfrage ist noch fehlerhaft. bei "else" sollte der komplette untere Teil übersprungen werden, macht sonst keinen Sinn.
-printf "Eintrag so speichern?(y/n)"
+printf "Save entry?(y/n)"
 read confirm
 if [ "$confirm" = "y" ]; then
 
@@ -41,12 +41,12 @@ if [ "$confirm" = "y" ]; then
 
 
 #Neue Index.html erstellen:
-. $path_scripts/bloggenerieren.sh
+. $path_scripts/generate_index.sh
 
 
-  echo "Gespeichert."
+  echo "Saved."
 else
-  echo "Abgebrochen."
+  echo "Canceled."
   break
 fi
 
