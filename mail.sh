@@ -46,7 +46,7 @@ while [ $counter_entry -le $counter_entries_in_rss ];do
     . $install_path/beitraggenerieren.sh
 
 
-    counter_entries_imported=counter_entries_imported+1
+    counter_entries_imported=$counter_entries_imported+1
   fi
 
   counter_entry=$(($counter_entry+1))
