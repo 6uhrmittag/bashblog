@@ -29,7 +29,7 @@ echo '' >> $path_temp/menu.html
 
 #Generate menu
 #Generate sub-menu:pages
-echo "<li>seiten</lis>" >> "$path_temp/menu.html"
+echo "<li>seiten</li>" >> "$path_temp/menu.html"
 echo "    <ul>" >> "$path_temp/menu.html"
 
 for FILE in $(ls $path_pages); do
@@ -41,12 +41,26 @@ echo "    </ul>" >> "$path_temp/menu.html"
 echo "pages links added"
 
 #Generate sub-menu:links
-echo "<li>links</lis>" >> "$path_temp/menu.html"
+echo "<li>links</li>" >> "$path_temp/menu.html"
 echo "    <ul>" >> "$path_temp/menu.html"
 
 for FILE in $(ls $path_menu_links); do
   url_text=$(echo $FILE)
  url=$(cat "$path_menu_links/$FILE" )
+echo '        <li class="sub"><a href="'$url'" target="_self">'$url_text'</a></li>' >> $path_temp/menu.html
+done
+echo "    </ul>" >> "$path_temp/menu.html"
+echo "social links added"
+
+#Generate sub-menu:tags
+echo "<li>tags</li>" >> "$path_temp/menu.html"
+echo "    <ul>" >> "$path_temp/menu.html"
+
+for FILE in $(ls $path_tags); do
+
+url_text=$(echo $FILE | cut -d. -f1)
+url=$(cat "$path_tags/$FILE" )
+
 echo '        <li class="sub"><a href="'$url'" target="_self">'$url_text'</a></li>' >> $path_temp/menu.html
 done
 echo "    </ul>" >> "$path_temp/menu.html"

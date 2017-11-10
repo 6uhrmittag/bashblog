@@ -33,7 +33,9 @@ entry_after_translation=$(cat<<EndOfMessage
       </div>
 
       <div class="YoutubeVideoWrapper">
+      <center>
         <iframe width="720" height="405" src="https://www.youtube.com/embed/$youtube_id"></iframe>
+      </center>
       </div>
 
       <div class="tags">
