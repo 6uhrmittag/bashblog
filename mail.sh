@@ -17,12 +17,13 @@ zahl=1
 beitagscounter=0
 #echo $phasedfeed
 
-#Einträge zählen 
+#Einträge zählen
 #beitragscounter=$(xml_grep --count "rss//item/title" mail.xml | head -n 1 | cut -d: -f2 | tr -d '[:space:]')
 #echo "Beiträge gefunden: $beitragscounter"
 beitragscounter=$(xmlstarlet sel -t -v "count(/rss//item/title)" $file_mailxml)
 beitrag=1
 
+echo "1"
 #Schleife für jeden Eintrag
 while [ $beitrag -le $beitragscounter ];do
 #Extract ID
@@ -33,8 +34,8 @@ then
 #echo "New entry found!"
 
 #Titel
-eintragstext=$(xmlstarlet sel -t -m "/rss//item[$beitrag]/title" -v . -n $file_mailxml)
-#echo "Entry imported: $eintragstext"
+entry_text=$(xmlstarlet sel -t -m "/rss//item[$beitrag]/title" -v . -n $file_mailxml)
+#echo "Entry imported: $entry_text"
 
 #URL
 url=$(xmlstarlet sel -t -m "/rss//item[$beitrag]/link" -v . -n $file_mailxml)
@@ -69,6 +70,5 @@ rm $file_mailxml
 
 
 #create new index.html
-. $install_path/bloggenerieren.sh
+. $install_path/generate_index.sh
 echo "Email/RSS import done!"
-

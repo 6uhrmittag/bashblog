@@ -9,31 +9,29 @@ source ./modules/translator_youtube.sh
 if [[ $(echo $url | grep youtube.com) != "" ]]; then
   echo "youtube link found"
 translator_youtube $url
-EINTRAG_IN_HTML=$entry_after_translation
+entry_html=$entry_after_translation
 else
 echo "no Youtube link found"
 
-#Eintrag als Variable gespeichert
 
-  #Sonderzeichen Umwandeln. Es fehlt ' und " - ToDO: alles in for-schleife
-  temp_eintragstext=${eintragstext//</&lt;}
-  eintragstext=$temp_eintragstext
-  temp_eintragstext=${eintragstext//>/&gt;}
-  eintragstext=$temp_eintragstext
-  temp_eintragstext=${eintragstext//&/&amp;}
-  eintragstext=$temp_eintragstext
+  #Convert special characters.
+  temp_entry_text=${entry_text//</&lt;}
+  entry_text=$temp_entry_text
+  temp_entry_text=${entry_text//>/&gt;}
+  entry_text=$temp_entry_text
+  temp_entry_text=${entry_text//&/&amp;}
+  entry_text=$temp_entry_text
 
 
-  #In HTML wandeln ANFANG
-  #Eintrag in HTML umwandeln und in Variable speichern
-  # "EndOfMessage" ist eine variable Bezeichnung, die das Ende angiebt -> Muss in eigener Zeile stehen!
+  #Convert to HTML
+  #Converts entry to HTML and stores it in "entry_html"
   #https://stackoverflow.com/questions/23929235/multi-line-string-with-extra-space-preserved-indentation
-  EINTRAG_IN_HTML=$(cat<<EndOfMessage
+  entry_html=$(cat<<EndOfMessage
 
-  <!-- EINTRAG ANFANG -->
+  <!-- Entry Start -->
   <div class="eintrag">
         <div class="url">
-              <a href="$url" target="_blank">$eintragstext</a>
+              <a href="$url" target="_blank">$entry_text</a>
         </div>
 
         <div class="tags">
@@ -41,20 +39,20 @@ echo "no Youtube link found"
         </div>
         <br />
   </div>
-  <!-- EINTRAG ENDE -->
+  <!-- Entry End -->
 EndOfMessage
   )
-  #In HTML wandeln ENDE
+  #Convert to HTML end
 
 
 fi
 
 
-  #Aktuelles Datum
+  #Current date
   DATE=`date +%d_%m_%Y`
 
-  #Generiere html pro Tag
+  #Generate html file for the day
   touch "$path_entries/tag_$DATE.html"
 
-  #Tägliche Einträge in eintraege.html sammeln bzw. an den Anfang schreiben
-  echo "$EINTRAG_IN_HTML" | cat - "$path_entries/tag_$DATE.html" > $path_temp/temp && mv $path_temp/temp "$path_entries/tag_$DATE.html"
+  #Save generated entry to html file of the day. Append to beginning.
+  echo "$entry_html" | cat - "$path_entries/tag_$DATE.html" > $path_temp/temp && mv $path_temp/temp "$path_entries/tag_$DATE.html"

@@ -10,19 +10,19 @@ path_config="./config/config.conf"
 
 #Generate Entries.html
 ##Create File
-touch $path_temp/eintraege.html
-echo "" > $path_temp/eintraege.html
+touch $path_temp/entries.html
+echo "" > $path_temp/entries.html
 
 #Insert seperate Entries into one .html
 for FILE in $(ls $path_entries| sort -t_ -n -k4 -r -k3 ); do
-  cat "$path_templates/tag_anfang.html" >> "$path_temp/eintraege.html"
+  cat "$path_templates/day_start.html" >> "$path_temp/entries.html"
   #Datum aus Filename extraieren
   datum=$(echo $path_entries/$FILE | cut -d. -f1 | cut -d_ -f2,3,4 | tr _ .)
 
-  echo "    $datum" >> "$path_temp/eintraege.html"
-  cat "$path_templates/tag_mitte.html" >> "$path_temp/eintraege.html"
-  cat "$path_entries/$FILE" >> "$path_temp/eintraege.html"
-  cat "$path_templates/tag_ende.html" >> "$path_temp/eintraege.html"
+  echo "    $datum" >> "$path_temp/entries.html"
+  cat "$path_templates/day_middle.html" >> "$path_temp/entries.html"
+  cat "$path_entries/$FILE" >> "$path_temp/entries.html"
+  cat "$path_templates/day_end.html" >> "$path_temp/entries.html"
 done
 #end: Generate Entries.html
 
@@ -40,7 +40,7 @@ cat $path_templates/header.html  >> $html_path/index.html
 cat $path_temp/menu.html  >> $html_path/index.html
 
 echo '<div id="inhalt">' >> $html_path/index.html
-cat $path_temp/eintraege.html >> $html_path/index.html
+cat $path_temp/entries.html >> $html_path/index.html
 echo '</div>' >> $html_path/index.html
 
 echo '</body>' >> $html_path/index.html
@@ -48,7 +48,7 @@ echo '</html>' >> $html_path/index.html
 #end: Generate new index.html
 
 ##Delete Tempfiles
-rm $path_temp/eintraege.html
+rm $path_temp/entries.html
 rm $path_temp/menu.html
 #end: Delete Tempfiles
 
