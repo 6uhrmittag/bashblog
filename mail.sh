@@ -1,6 +1,9 @@
 #!/bin/bash
 #TODO: tags
 
+now=$(date +"%T")
+echo "$now - Start Email import"
+
 #loadad config
 path_config="./config/config.conf"
 . $path_config
@@ -23,7 +26,7 @@ beitagscounter=0
 beitragscounter=$(xmlstarlet sel -t -v "count(/rss//item/title)" $file_mailxml)
 beitrag=1
 
-#Schleife für jeden Eintrag
+#Import entries
 while [ $beitrag -le $beitragscounter ];do
 #Extract ID
 id=$(xmlstarlet sel -t -m "/rss//item[$beitrag]/guid" -v . -n $file_mailxml)
@@ -70,4 +73,7 @@ rm $file_mailxml
 
 #create new index.html
 . $install_path/generate_index.sh
-echo "Email/RSS import done!"
+echo "Imported $beitrag entries."
+echo "Email import done."
+
+echo "---------------------------------------------------"
