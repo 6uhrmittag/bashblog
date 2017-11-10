@@ -12,12 +12,12 @@ if [[ $(echo $url | grep youtube.com) != "" ]]; then
 else
 
   #Convert special characters.
-  temp_entry_text=${entry_text//</&lt;}
-  entry_text=$temp_entry_text
-  temp_entry_text=${entry_text//>/&gt;}
-  entry_text=$temp_entry_text
-  temp_entry_text=${entry_text//&/&amp;}
-  entry_text=$temp_entry_text
+#  temp_entry_text=${entry_text//</&lt;}
+#  entry_text=$temp_entry_text
+#  temp_entry_text=${entry_text//>/&gt;}
+#  entry_text=$temp_entry_text
+#  temp_entry_text=${entry_text//&/&amp;}
+#  entry_text=$temp_entry_text
 
 
   #Convert to HTML
