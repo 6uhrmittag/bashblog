@@ -110,12 +110,16 @@ The test succeeded when
 
 ## Contributing
 
-I have not yet thought about others contributing to the project. We'll figure it out as soon as someone is interested in contributing(please file an issue).
+I have not yet thought about others contributing to the project. We'll figure it out as soon as someone is interested in contributing(please file an issue or contact me via [twitter](https://twitter.com/6uhrmittag)).
 
-## Versioning
+## Code
 
 See the code at [https://github.com/6uhrmittag/bashblog](https://github.com/6uhrmittag/bashblog).
 
+## Live
+
+See the code live at [slashlog.de](https://slashlog.de).
+
 ## Authors
 
-* **Marvin Heimbrodt** - *Initial work* - [6uhrmittag](6uhrmittag.de)
+* **Marvin Heimbrodt** - *Initial work* - [@6uhrmittag](https://twitter.com/6uhrmittag)
