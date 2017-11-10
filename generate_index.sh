@@ -54,4 +54,4 @@ rm $path_temp/menu.html
 
 
 ###Todo: Check for errors
-echo "New index.html generated!"
+echo "Generated: index.html"

@@ -41,7 +41,7 @@ if [[ $(ls $path_pages) ]]; then
   done
 
   echo "    </ul>" >> "$path_temp/menu.html"
-  echo "Menu: pages links added"
+  #echo "Menu: pages links added"
 fi
 
 
@@ -58,7 +58,7 @@ if [[ $(ls $path_menu_links) ]]; then
   done
 
   echo "    </ul>" >> "$path_temp/menu.html"
-  echo "Menu: social links added"
+  #echo "Menu: social links added"
 
 fi
 
@@ -74,7 +74,7 @@ if [[ $(ls $path_tags) ]]; then
     echo "        <li class=\"sub\"><a href=\"$url\" target=\"_self\">$url_text</a></li>" >> $path_temp/menu.html
   done
   echo "    </ul>" >> "$path_temp/menu.html"
-  echo "Menu: tag links added"
+  #echo "Menu: tag links added"
 fi
 
 
@@ -87,3 +87,5 @@ echo '' >> $path_temp/menu.html
 echo '</ul>' >> $path_temp/menu.html
 echo '</div>' >> $path_temp/menu.html
 echo '</nav>' >> $path_temp/menu.html
+
+echo "Generated: Menu"

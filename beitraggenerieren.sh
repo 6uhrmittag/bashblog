@@ -51,5 +51,7 @@ fi
   #Generate html file for the day
   touch "$path_entries/tag_$DATE.html"
 
-  #Save generated entry to html file of the day. Append to beginning.
+  #Apppend new entry to temporary entry.html of the day. Move temp entry.html to /html/entries
   echo "$entry_html" | cat - "$path_entries/tag_$DATE.html" > $path_temp/temp && mv $path_temp/temp "$path_entries/tag_$DATE.html"
+
+echo "Generated: Entry file for today"
