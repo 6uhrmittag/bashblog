@@ -29,7 +29,7 @@ entry_after_translation=$(cat<<EndOfMessage
 <!-- Entry Start -->
 <div class="eintrag">
       <div class="videotitle">
-                  <span>$eintragstext</span>
+                  <span>$entry_text</span>
       </div>
 
       <div class="YoutubeVideoWrapper">
