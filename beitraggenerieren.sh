@@ -11,8 +11,6 @@ if [[ $(echo $url | grep youtube.com) != "" ]]; then
 translator_youtube $url
 entry_html=$entry_after_translation
 else
-echo "no Youtube link found"
-
 
   #Convert special characters.
   temp_entry_text=${entry_text//</&lt;}
