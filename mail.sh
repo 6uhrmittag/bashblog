@@ -23,7 +23,6 @@ beitagscounter=0
 beitragscounter=$(xmlstarlet sel -t -v "count(/rss//item/title)" $file_mailxml)
 beitrag=1
 
-echo "1"
 #Schleife für jeden Eintrag
 while [ $beitrag -le $beitragscounter ];do
 #Extract ID
