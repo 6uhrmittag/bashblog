@@ -31,8 +31,7 @@ while [ $beitrag -le $beitragscounter ];do
 #Extract ID
 id=$(xmlstarlet sel -t -m "/rss//item[$beitrag]/guid" -v . -n $file_mailxml)
 #Check if ID already imported. Import only new entries
-if [ "$(grep "$id" $file_ids)" = "" ]
-then
+if [ "$(grep "$id" $file_ids)" = "" ]; then
 #echo "New entry found!"
 
 #Titel
