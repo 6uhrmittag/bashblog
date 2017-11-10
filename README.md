@@ -79,7 +79,7 @@ I have not yet thought about others contributing to the project. We'll figure it
 
 ## Versioning
 
-I use gitlab for versioning. See the code at [https://gitlab.com/6uhrmittag/bashblog](https://gitlab.com/6uhrmittag/bashblog).
+See the code at [https://github.com/6uhrmittag/bashblog](https://github.com/6uhrmittag/bashblog).
 
 ## Authors
 
