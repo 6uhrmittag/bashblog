@@ -7,13 +7,21 @@ It takes less than 30 seconds to publish a new entry via terminal:
 
 [![asciicast](https://asciinema.org/a/146946.png)](https://asciinema.org/a/146946)
 
+##Usecase
+
+![Usecase_Bashblog](Documentation/Usecase_Bashblog.png)
+
 ## Features
+
 Entries are grouped by the date of its import. Each entry has 3 features
+
 - URL
 - title
 - tag(s)
 
 An entry consists of only one link. The text of this link is the title.
+
+
 
 ### Modules
 It is possible to extend the features via modules (or translators)
