@@ -50,8 +50,10 @@ Please see: [http://xml-coreutils.sourceforge.net/] instructions will follow.
 There is no routine to install the blog, yet. Copy the branch ```master``` to your webserver. It doesn't need to be in the webserver's folder. ```~/bin/```could be a possible path. You need to be able to execute the scripts - ```chmod``` them to your needs.
 Copy ```config/config_template.conf``` to ```config/config.conf``` and change the first two lines to your need. ```install_path``` is the current path. ```html_path``` is the root directory for the final website. It must be accessible via web. You probably have do ```mkdir``` the needed folders yourself. Maybe even ```touch``` some files to create them initially.
 
-
 ### Usage
+
+![Bashblog_input](Documentation/Bashblog_input.png)
+
 #### Write entry via command line
 
 [![asciicast](https://asciinema.org/a/146946.png)](https://asciinema.org/a/146946)

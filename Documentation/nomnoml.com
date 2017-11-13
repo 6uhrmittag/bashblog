@@ -51,6 +51,8 @@
 
 
 
+
+
 #padding: 18
 #spacing: 30
 #fill: #eee8d5; #fdf6e3
@@ -76,10 +78,10 @@
 [<usecase> Wants to publish a long Blogpost] -> [<state> open E-Mail Client]
 [<state> open E-Mail Client] -> [<input> write post in Markdown]
 [<state> write post in Markdown] -> [E-Mail(post)]
-[E-Mail(post)] -> [<input> send E-Mail]
-[E-Mail(link)] -> [<input> send E-Mail]
+[E-Mail(post)] -> [<sender> send E-Mail]
+[E-Mail(link)] -> [<sender> send E-Mail]
 
-[<input> send E-Mail]->[Blog |
+[Blog |
   [Post]
   [Link]
 
@@ -94,3 +96,91 @@
   [Subject]->[$Title]
   [Body]->[$Post]
 ]
+
+[<sender>send E-Mail] -> [<receiver> E-Mail Inbox]
+[<receiver> E-Mail Inbox] <:- [<state> Zappier]
+[<state> Zappier] -> [<state> prase E-Mail]
+[<state> prase E-Mail] -> [<state> Generate RSS-Feed]
+[<state> Generate RSS-Feed] -> [<state> publish RSS-Feed]
+[<state> publish RSS-Feed]->[RSS-Feed| Title| URL| Tag(s)| Date| E-Mail ID]
+[RSS-Feed] <:- [<state> Download Feed]
+[<state> Download Feed] <:- [<state>Cronjob]
+
+
+
+
+
+
+
+
+
+
+
+
+#title: Bashblog_input
+
+
+[<start>]->[<choice>Input]
+
+[<choice>Input] -> [<input>E-Mail]
+[<choice>Input] -> [<input>Terminal]
+[<input>E-Mail] -->[Mail Import]
+[<input>Terminal] -->[Manual Import]
+[Mail Import|
+  [Cronjob]-->[Mail.sh |Parse RSS Feed | beitraggenerieren.sh | generate_index.sh | publish post]
+]
+[Manual Import|
+[input_entry.sh | Ask for Input | beitraggenerieren.sh | generate_index.sh | publish post]
+]
+
+[Mail Import] -> [<state> published]
+[Manual Import] ->[<state> published]
+[<state> published] -> [<end> post published]
+
+
+
+
+
+
+
+
+
+
+
+#title: Bashblog_input
+
+
+[<start>]->[<choice>Input]
+
+[<choice>Input] -> [<input>E-Mail]
+[<input>E-Mail] -> [<state>Send E-Mail]
+[<choice>Input] -> [<input>Terminal]
+[<input>Terminal]->[<state>SSH to Webserver]
+
+[<state>Send E-Mail] ->[Mail Import]
+[<state>SSH to Webserver] ->[Manual Import]
+
+
+
+
+[Manual Import|
+    [input_entry.sh|
+    [<state>Ask for Input] -->[Output| Title | URL | Tag(s)]
+        [Output] --> [<reference>beitraggenerieren.sh]
+[<reference>beitraggenerieren.sh] -> [<reference>generate_index.sh]
+      ]
+]
+
+
+[Mail Import|
+    [Cronjob]-->[Mail.sh|
+        [<state>Download Feed] -> [<state>Parse Feed]
+        [<state>Parse Feed] -->[Output| Title | URL | E-Mail-ID]
+        [Output] --> [<reference>beitraggenerieren.sh]
+[<reference>beitraggenerieren.sh] -> [<reference>generate_index.sh]
+      ]
+]
+
+[Mail Import] -> [<state> Post published]
+[Manual Import] ->[<state> Post published]
+[<state> Post published] -> [<end> post published]
