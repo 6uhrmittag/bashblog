@@ -18,7 +18,7 @@ counter_entries_imported=0
 counter_entry=1
 
 #Download RSS feed
-feed=$(curl --silent "https://zapier.com/engine/rss/2528358/blogeintrag/")
+feed=$(curl --silent "$RSSfeed_live")
 feed=$(echo $feed | sed 's/%0D%0A%0D%0A//g' | sed 's/%0D%0A//g')
 echo $feed > $file_mailxml
 
