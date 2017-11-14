@@ -39,8 +39,10 @@ Please see: [http://xml-coreutils.sourceforge.net/] instructions will follow.
 
 ### Installing
 
-There is no routine to install the blog, yet. Copy the branch ```master``` to your webserver. It doesn't need to be in the webserver's folder. ```~/bin/```could be a possible path. You need to be able to execute the scripts - ```chmod``` them to your needs.
-Copy ```config/config_template.conf``` to ```config/config.conf``` and change the first two lines to your need. ```install_path``` is the current path. ```html_path``` is the root directory for the final website. It must be accessible via web. You probably have do ```mkdir``` the needed folders yourself. Maybe even ```touch``` some files to create them initially.
+Download the branch ```master``` to your webserver.<br />It doesn't need to be in the webserver's folder. ```~/bin/```could be a possible path. You need to be able to execute the scripts - ```chmod``` them to your needs.
+
+Copy ```config/config_template.conf``` to ```config/config.conf``` and change the first lines accordingly(follow instructions in the file).<br />Run ```install.sh```. It will create required folders.
+It's possible that you still have to chown the files in your webserver folder to e.g. www-data in order to publish it.
 
 
 ### Usage
