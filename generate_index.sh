@@ -17,7 +17,7 @@ echo "" > $path_temp/entries.html
 for FILE in $(ls $path_entries| sort -t_ -n -k4 -r -k3 ); do
   cat "$path_templates/day_start.html" >> "$path_temp/entries.html"
   #Datum aus Filename extraieren
-  datum=$(echo $path_entries/$FILE | cut -d. -f1 | cut -d_ -f2,3,4 | tr _ .)
+  datum=$(echo $FILE | cut -d. -f1 | cut -d_ -f2,3,4 | tr _ .)
 
   echo "    $datum" >> "$path_temp/entries.html"
   cat "$path_templates/day_middle.html" >> "$path_temp/entries.html"
