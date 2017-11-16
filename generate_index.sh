@@ -1,6 +1,6 @@
 #!/bin/bash
 #This Script generates a new index.html out of all seperate parts
-
+set -o errexit
 #load config
 path_config="./config/config.conf"
 . $path_config
