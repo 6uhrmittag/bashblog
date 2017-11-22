@@ -3,6 +3,15 @@
 path_config="./config/config.conf"
 . $path_config
 
+
+
+if [ $1 == "review" ]; then
+path_entries = $path_entries_review
+
+
+fi
+
+
 source ./modules/translator_youtube.sh
 
 

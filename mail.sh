@@ -9,8 +9,21 @@ echo "$debug_date - $debug_time - Start Email import"
 #load config
 path_config="./config/config.conf"
 . $path_config
+
+
+
+
 file_mailxml="$path_temp/mail.xml"
 file_ids="$path_ids/ids.txt"
+RSSfeed_URL = $RSSfeed_live
+
+if [ $1 == "review" ]; then
+  file_mailxml="$path_temp/mail_review.xml"
+  file_ids="$path_ids/ids_review.txt"
+  RSSfeed_URL = $RSSfeed_review
+fi
+
+
 touch $file_ids
 
 #Initialize Variables
@@ -18,7 +31,7 @@ counter_entries_imported=0
 counter_entry=1
 
 #Download RSS feed
-feed=$(curl --silent "$RSSfeed_live")
+feed=$(curl --silent "$RSSfeed_URL")
 feed=$(echo $feed | sed 's/%0D%0A%0D%0A//g' | sed 's/%0D%0A//g')
 echo $feed > $file_mailxml
 
@@ -42,9 +55,14 @@ while [ $counter_entry -le $counter_entries_in_rss ];do
     #Store ID
     echo $id >> $file_ids
 
+    if [ $1 == "review" ]; then
+      #Create entry html
+      . $install_path/beitraggenerieren.sh review
+    else
+      #Create entry html
+      . $install_path/beitraggenerieren.sh
+    fi
 
-    #Create entry html
-    . $install_path/beitraggenerieren.sh
 
 
     counter_entries_imported=$(($counter_entries_imported+1))
