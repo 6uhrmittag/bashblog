@@ -1,6 +1,6 @@
 # bashblog
 
-Static blog generator. <br />
+tatic blog generator. Super simple. Nothing fancy, just a list of links and short notes.<br />
 Publish via shell or email to collect and share links with a short text.
 
 It takes less than 30 seconds to publish a new entry via terminal:
