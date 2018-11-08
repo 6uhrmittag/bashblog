@@ -7,6 +7,11 @@ It takes less than 30 seconds to publish a new entry via terminal:
 
 [![asciicast](https://asciinema.org/a/146946.png)](https://asciinema.org/a/146946)
 
+Generated Website:
+
+[![demo](demo.png)
+
+
 ## Features
 Entries are grouped by the date of its import. Each entry has 3 features
 - URL
@@ -120,7 +125,7 @@ See the code at [https://github.com/6uhrmittag/bashblog](https://github.com/6uhr
 
 ## Live
 
-See the code live at [slashlog.de](https://slashlog.de).
+See the code live at [blog.slashlog.org](https://blog.slashlog.org).
 
 ## Authors
 
